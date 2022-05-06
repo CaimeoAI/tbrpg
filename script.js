@@ -4,6 +4,7 @@
 const prompt = require("prompt-sync")({sigint:false});
 const lineBreak = '\n';
 let eventContinue = false;
+let tutorialEvent01;
 let playerGold = 0;
 
 //! GAME OVER FUNCTION
@@ -26,7 +27,7 @@ function eventGen() {
 //! MAINLOOP
 
 console.log("WELCOME TO THE TEXT-BASED RPG!");
-const startGame = prompt("Do you want to start the game? [y]/[n]")
+const startGame = prompt("Do you want to start the game? [y]/[n] ")
 
 if(startGame === "y") {
 
@@ -38,20 +39,33 @@ if(startGame === "y") {
 
     do {
 
-        const tutorialEvent01 = prompt("\n [a] Saw your left foot off [b] Saw your right foot off [c] Saw the the chain off [d] Throw the saw away:    ")
-
+        tutorialEvent01 = prompt("\n [a] Saw your left foot off [b] Saw your right foot off [c] Saw the the chain off [d] Throw the saw away \n PICK A CHOICE: ")
+        
         if (tutorialEvent01 === "a") {
-            console.log("\n After you saw your left foot off, you are still chained to the wall. Before you can think of anything else you do you die of blood loss...");
+            console.log("\n After you saw your left foot off, you are still chained to the wall. Before you can think of anything else you die of blood loss...");
             gameOver()
             break
-        } else if (tutorialEvent02 === "b") {
+        } else if (tutorialEvent01 === "b") {
             console.log("\n You managed to saw your right foot off and you are no longer chained to the wall. However before you muster the strength to stand up on you remaining foot, you die of blood loss...")
             gameOver()
             break
+        } else if (tutorialEvent01 === "c") {
+            console.log("\n After more than what felt like an eternity, you finally managed to saw through the thick chains. You stand up and walk up to the only door there is.");
+            eventContinue = true;
+        } else if (tutorialEvent01 === "d") {
+            console.log("\n You throw the saw away. But after a while you pick it up again as you see no other tool that could help you in your current situation.");
+        } else {
+            console.log("\n Invalid Choice. Try using the letters corresponding to the give choices!");
         }
 
     } while (eventContinue===false)
 
+    if (eventContinue===true) {
+
+    console.log("\n You slowly open the door and walk through it and find yourself outside in the middle of a forest.");
+    console.log("\n You take a long rest after spending so much energy on freeing yourself from the chains.");
+
+    }
     //TODO End of the Tutorial
 
     for(i=0 ; i<10 ; i++) {
