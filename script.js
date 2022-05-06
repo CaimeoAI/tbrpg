@@ -46,8 +46,8 @@ startGame = prompt("Do you want to start the game? [y]/[n]")
 
 if(startGame === "y") {
 
-    for(i=0 , i<10 , i++){
-        
+    for(i=0 ; i<10 ; i++) {
+        eventGen()
     }
 
 }
