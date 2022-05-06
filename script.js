@@ -4,27 +4,13 @@
 const prompt = require("prompt-sync")({sigint:false});
 const lineBreak = '\n';
 let eventContinue = false;
+let playerGold = 0;
 
+//! GAME OVER FUNCTION
 
-
-
-
-
-
-
-
-//! FUNCTIONS
-
-
-
-
-
-
-
-
-
-
-
+function gameOver() {
+    console.log("\n \n GAME OVER \n \n");
+}
 
 //! EVENT RANDOMIZER
 
@@ -51,14 +37,20 @@ if(startGame === "y") {
     console.log("\n You take saw into your hands. But what do you want to with it now?")
 
     do {
-        
-        const tutorialEvent01 = ("[a] Saw your left foot off [b] Saw your right foot off [c] Saw the the chain off [d] Throw the saw away")
+
+        const tutorialEvent01 = prompt("\n [a] Saw your left foot off [b] Saw your right foot off [c] Saw the the chain off [d] Throw the saw away:    ")
 
         if (tutorialEvent01 === "a") {
-
+            console.log("\n After you saw your left foot off, you are still chained to the wall. Before you can think of anything else you do you die of blood loss...");
+            gameOver()
+            break
+        } else if (tutorialEvent02 === "b") {
+            console.log("\n You managed to saw your right foot off and you are no longer chained to the wall. However before you muster the strength to stand up on you remaining foot, you die of blood loss...")
+            gameOver()
+            break
         }
 
-    } while (eventContinue=false)
+    } while (eventContinue===false)
 
     //TODO End of the Tutorial
 
