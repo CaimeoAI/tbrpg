@@ -2,9 +2,7 @@
 //! VARIABLES
 
 const prompt = require("prompt-sync")({sigint:false});
-const lineBreak = '\n';
 let eventContinue = false;
-let tutorialEvent01;
 let playerGold = 0;
 
 //! GAME OVER FUNCTION
@@ -26,7 +24,7 @@ function eventGen() {
 
 //! MAINLOOP
 
-console.log("WELCOME TO THE TEXT-BASED RPG!");
+console.log("\n WELCOME TO THE TEXT-BASED RPG! \n");
 const startGame = prompt("Do you want to start the game? [y]/[n] ")
 
 if(startGame === "y") {
@@ -35,12 +33,12 @@ if(startGame === "y") {
 
     console.log("\n You wake up in a dark prison cell with your right foot chained to the wall.");
     console.log("\n As you tried to break the chains that are binding you to these cold stone walls, you notice a saw right next to you.");
-    console.log("\n You take saw into your hands. But what do you want to with it now?")
+    console.log("\n You take saw into your hands. But what do you want to with it now? \n \n")
 
     do {
 
-        tutorialEvent01 = prompt("\n [a] Saw your left foot off [b] Saw your right foot off [c] Saw the the chain off [d] Throw the saw away \n PICK A CHOICE: ")
-        
+        let tutorialEvent01 = prompt("[a] Saw your left foot off [b] Saw your right foot off [c] Saw the the chain off [d] Throw the saw away       PICK A CHOICE: ")
+
         if (tutorialEvent01 === "a") {
             console.log("\n After you saw your left foot off, you are still chained to the wall. Before you can think of anything else you die of blood loss...");
             gameOver()
@@ -53,7 +51,7 @@ if(startGame === "y") {
             console.log("\n After more than what felt like an eternity, you finally managed to saw through the thick chains. You stand up and walk up to the only door there is.");
             eventContinue = true;
         } else if (tutorialEvent01 === "d") {
-            console.log("\n You throw the saw away. But after a while you pick it up again as you see no other tool that could help you in your current situation.");
+            console.log("\n You throw the saw away. But after a while you pick it up again as you see no other tool that could help you in your current situation. \n");
         } else {
             console.log("\n Invalid Choice. Try using the letters corresponding to the give choices!");
         }
@@ -72,4 +70,6 @@ if(startGame === "y") {
         eventGen()
     }
 
+} else {
+    console.clear()
 }
