@@ -5,6 +5,8 @@ const prompt = require("prompt-sync")({sigint:false});
 let eventContinue = false;
 let playerGold = 0;
 
+let event01Done = false;
+
 //! GAME OVER FUNCTION
 
 function gameOver() {
@@ -21,11 +23,12 @@ function invaidChoice() {
 
 // Creates Random Number Between 1-10 and loads the corresponding event to that number
 function eventGen() {
-    const currentEventNumber = Math.round(Math.random()*9+1)
+    const currentEventNumber = Math.ceil(Math.random()*10)
 
-    if(currentEventNumber === 1 && event01Done !== false) {
+    if(currentEventNumber === 1 && event01Done === false) {
 
         console.log("\n You encounter a crossroad. There are three ways to ahead of you.");
+
         do {
 
             console.log("\n The left side road looks completely overgrown. The one straight ahead is plastered with red stone bricks. And the one to the right seems to lead deeper into the woods. \n \n");
