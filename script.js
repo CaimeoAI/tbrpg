@@ -17,8 +17,22 @@ function gameOver() {
 function eventGen() {
     const currentEventNumber = Math.round(Math.random()*9+1)
 
-    if(currentEventNumber === 1) {
-        console.log("");
+    if(currentEventNumber === 1 && event01Done !== false) {
+
+        console.log("\n You encounter a crossroad. There are three ways to ahead of you.");
+        do {
+
+            console.log("\n The left side road looks completely overgrown. The one straight ahead is plastered with red stone bricks. And the one to the right seems to lead deeper into the woods. \n \n");
+            
+            let event01 = prompt("[a] Take left road [b] Take road ahead [c] Take right road [d] Turn back      PICK A CHOICE:")
+
+            if (event01 === "a") {
+
+            }
+
+
+        } while (event01Done === false)
+        
     }
 }
 
@@ -64,7 +78,7 @@ if(startGame === "y") {
     console.log("\n You take a long rest after spending so much energy on freeing yourself from the chains.");
     console.log("\n ...");
     console.log("\n After a while you stand up and head in a random direction into the woods...");
-    
+
     }
     
     //TODO End of the Tutorial
