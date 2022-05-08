@@ -62,7 +62,9 @@ if(startGame === "y") {
 
     console.log("\n You slowly open the door and walk through it and find yourself outside in the middle of a forest.");
     console.log("\n You take a long rest after spending so much energy on freeing yourself from the chains.");
-
+    console.log("\n ...");
+    console.log("\n After a while you stand up and head in a random direction into the woods...");
+    
     }
     
     //TODO End of the Tutorial
