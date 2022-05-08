@@ -11,6 +11,12 @@ function gameOver() {
     console.log("\n \n GAME OVER \n \n");
 }
 
+//! INVALID CHOICE FUNCTION
+
+function invaidChoice() {
+    console.log("\n Invalid Choice. Try using the letters corresponding to the given choices!");
+}
+
 //! EVENT RANDOMIZER
 
 // Creates Random Number Between 1-10 and loads the corresponding event to that number
@@ -28,6 +34,14 @@ function eventGen() {
 
             if (event01 === "a") {
 
+            } else if (event01 === "b") {
+
+            } else if (event01 === "c") {
+
+            } else if (event01 === "d") {
+
+            } else {
+                invaidChoice()
             }
 
 
@@ -67,7 +81,7 @@ if(startGame === "y") {
         } else if (tutorialEvent01 === "d") {
             console.log("\n You throw the saw away. But after a while you pick it up again as you see no other tool that could help you in your current situation. \n");
         } else {
-            console.log("\n Invalid Choice. Try using the letters corresponding to the given choices!");
+            invaidChoice()
         }
 
     } while (eventContinue===false)
