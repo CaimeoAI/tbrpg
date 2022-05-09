@@ -79,12 +79,13 @@ function rest() {
             console.clear();
             console.log("\n You get up and continue your Journey... \n");
             restContinue = true;
+            break
         } else {
             console.clear();
             invaidChoice();
         }
 
-    } while (restContinue === false) 
+    } while (restContinue === false);
 
     restContinue = false;
 }
@@ -116,7 +117,6 @@ function eventGen() {
             } else {
                 invaidChoice()
             }
-
 
         } while (event01Done === false)
         
