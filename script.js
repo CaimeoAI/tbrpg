@@ -6,6 +6,7 @@ let eventContinue = false;
 let playerGold = 0;
 
 let maxHealth = 10;
+let restChoice;
 let restContinue = false;
 let event01Done = false;
 let gameOverSwitch = false;
@@ -59,38 +60,38 @@ function rest() {
 
     do {
 
-        console.log("You are resting.");
+        console.log("You are resting. \n");
         console.log("[c]Character Stats");
         console.log("[i]Inventory");
         console.log("[r]Rest to heal");
-        console.log("[w]Continue Journey");
+        console.log("[w]Continue Journey \n \n");
 
-        let restChoice = prompt(" What do you want to do?       PICK A CHOICE:");
-
+        restChoice = prompt("What do you want to do?       PICK A CHOICE:");
+        console.log(restChoice);
         if (restChoice === "c") {
             console.clear();
             playerStatsShow();
         } else if (restChoice === "i") {
-            console.clear();                    // TODO UNDER CONSTRUCTION
+            console.clear();           // TODO UNDER CONSTRUCTION
         } else if (restChoice === "r") {
             console.clear();
-            restHeal() 
+            restHeal();
         } else if (restChoice === "w") {
+            restContinue = true;
             console.clear();
             console.log("\n You get up and continue your Journey... \n");
-            restContinue = true;
-            break
         } else {
             console.clear();
             invaidChoice();
         }
 
-    } while (restContinue === false);
+    } while (restContinue === false); 
 
-    restContinue = false;
 }
 
 //! EVENT RANDOMIZER
+
+// TODO Make events into an array and randomize which element it should take out of the array. Helps with deleting Events easier
 
 // Creates Random Number Between 1-10 and loads the corresponding event to that number
 function eventGen() {
@@ -177,10 +178,10 @@ if(startGame === "y") {
     
     if (eventContinue === true && gameOverSwitch === false) {
 
-        for(i=0 ; i<10 ; i++) {
-            rest()
-            eventGen()
-        }
+        rest()
+  
+        eventGen()
+        
     }
 
 } else {
