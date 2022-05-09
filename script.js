@@ -7,6 +7,16 @@ let playerGold = 0;
 
 let event01Done = false;
 
+//! PLAYER STATS OBJECT DECLARATION
+
+let playerstats = {
+    Health: 10,
+    Strength: 5,
+    Dexterity: 5,
+    Speed: 5,
+    Intelligence: 5,
+}
+
 //! GAME OVER FUNCTION
 
 function gameOver() {
