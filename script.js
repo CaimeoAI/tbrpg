@@ -5,12 +5,14 @@ const prompt = require("prompt-sync")({sigint:false});
 let eventContinue = false;
 let playerGold = 0;
 
+let maxHealth = 10;
 let restContinue = false;
 let event01Done = false;
 
 //! PLAYER STATS OBJECT DECLARATION
 
 let playerstats = {
+    MaxHealth: maxHealth,
     Health: 10,
     Strength: 5,
     Dexterity: 5,
@@ -35,7 +37,8 @@ function invaidChoice() {
 function rest() {
     do {
         console.log("You are resting. What do you want to do?");
-        
+        console.log("[c]Character Stats");
+        console.log("[i]Inventory");
     } while (restContinue === false) 
 
     restContinue = false;
