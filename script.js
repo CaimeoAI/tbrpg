@@ -5,6 +5,7 @@ const prompt = require("prompt-sync")({sigint:false});
 let eventContinue = false;
 let playerGold = 0;
 
+let restContinue = false;
 let event01Done = false;
 
 //! PLAYER STATS OBJECT DECLARATION
@@ -27,6 +28,17 @@ function gameOver() {
 
 function invaidChoice() {
     console.log("\n Invalid Choice. Try using the letters corresponding to the given choices!");
+}
+
+//! REST FUNCTION
+
+function rest() {
+    do {
+        console.log("You are resting. What do you want to do?");
+        
+    } while (restContinue === false) 
+
+    restContinue = false;
 }
 
 //! EVENT RANDOMIZER
@@ -103,7 +115,10 @@ if(startGame === "y") {
 
     console.log("\n You slowly open the door and walk through it and find yourself outside in the middle of a forest.");
     console.log("\n You take a long rest after spending so much energy on freeing yourself from the chains.");
-    console.log("\n ...");
+    console.log("\n ...\n \n");
+
+    
+
     console.log("\n After a while you stand up and head in a random direction into the woods...");
 
     }
