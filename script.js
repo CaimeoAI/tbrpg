@@ -9,15 +9,26 @@ let maxHealth = 10;
 let restContinue = false;
 let event01Done = false;
 
-//! PLAYER STATS OBJECT DECLARATION
+//! PLAYER STATS OBJECT DECLARATION and PLAYER STAT FUNCTIONS
 
-let playerstats = {
+let playerStats = {
     MaxHealth: maxHealth,
     Health: 10,
     Strength: 5,
     Dexterity: 5,
     Speed: 5,
     Intelligence: 5,
+}
+
+function playerStatsShow() {
+    console.log("\n");
+    console.table(playerStats);
+    console.log("\n");
+}
+
+function statIncrease(stat,num) {
+    stat = stat + num
+    console.log(`\n You gained ${num} additional Points in ${stat}! \n`);
 }
 
 //! GAME OVER FUNCTION
@@ -36,9 +47,19 @@ function invaidChoice() {
 
 function rest() {
     do {
-        console.log("You are resting. What do you want to do?");
+
+        console.log("You are resting.");
         console.log("[c]Character Stats");
         console.log("[i]Inventory");
+        console.log("[r]Rest");
+        console.log("[w]Continue Journey");
+
+        let restChoice = prompt(" What do you want to do?       PICK A CHOICE:");
+
+        if (restChoice === c) {
+
+        }
+
     } while (restContinue === false) 
 
     restContinue = false;
@@ -96,17 +117,22 @@ if(startGame === "y") {
         let tutorialEvent01 = prompt("[a] Saw your left foot off [b] Saw your right foot off [c] Saw the the chain off [d] Throw the saw away       PICK A CHOICE: ")
 
         if (tutorialEvent01 === "a") {
+            console.clear()
             console.log("\n After you saw your left foot off, you are still chained to the wall. Before you can think of anything else you die of blood loss...");
             gameOver()
             break
         } else if (tutorialEvent01 === "b") {
+            console.clear()
             console.log("\n You managed to saw your right foot off and you are no longer chained to the wall. However before you muster the strength to stand up on you remaining foot, you die of blood loss...")
             gameOver()
             break
         } else if (tutorialEvent01 === "c") {
+            console.clear()
             console.log("\n After more than what felt like an eternity, you finally managed to saw through the thick chains. You stand up and walk up to the only door there is.");
+            statIncrease(playerStats.Strength,2)
             eventContinue = true;
         } else if (tutorialEvent01 === "d") {
+            console.clear()
             console.log("\n You throw the saw away. But after a while you pick it up again as you see no other tool that could help you in your current situation. \n");
         } else {
             invaidChoice()
