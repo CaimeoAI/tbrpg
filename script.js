@@ -5,7 +5,8 @@ const prompt = require("prompt-sync")({sigint:false});
 let eventContinue = false;
 let playerGold = 0;
 
-let maxHealth = 10;
+let maxHealth = 10;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
 let restChoice;
 let restContinue = false;
 let event01Done = false;
@@ -29,8 +30,9 @@ function playerStatsShow() {
 }
 
 function statIncrease(stat,num) {
-    stat = stat + num
-    console.log(`\n You gained ${num} additional Points in ${stat}! \n`);
+    let placeholder = Object.keys(playerStats)[stat]
+    console.log(`\n You gained ${num} additional Points in ${placeholder}! \n`);
+    playerStats[placeholder] += 2
 }
 
 //! GAME OVER FUNCTION
@@ -51,7 +53,7 @@ function invaidChoice() {
 function restHeal() {
     playerStats.Health = maxHealth;
     console.log("You take a rest... \n \n");
-    console.log(`You are completey healed back up to ${playerStats.Health}! \n \n`);
+    console.log(`You are completey healed back up to ${maxHealth}! \n \n`); 
 }
 
 //! REST FUNCTION
@@ -95,7 +97,7 @@ function rest() {
 
 // Creates Random Number Between 1-10 and loads the corresponding event to that number
 function eventGen() {
-    const currentEventNumber = Math.ceil(Math.random()*10)
+    const currentEventNumber = Math.ceil(Math.random())
 
     if(currentEventNumber === 1 && event01Done === false && gameOverSwitch === false) {
 
@@ -155,7 +157,7 @@ if(startGame === "y") {
         } else if (tutorialEvent01 === "c") {
             console.clear()
             console.log("\n After more than what felt like an eternity, you finally managed to saw through the thick chains. You stand up and walk up to the only door there is.");
-            statIncrease(playerStats.Strength,2)
+            statIncrease(2,2)
             eventContinue = true;
         } else if (tutorialEvent01 === "d") {
             console.clear()
