@@ -30,7 +30,7 @@ function playerStatsShow() {
 }
 
 function statIncrease(stat,num) {
-    let placeholder = Object.keys(playerStats)[stat]
+    let placeholder = Object.keys(playerStats)[stat] // Getting the key according to the index number
     console.log(`\n You gained ${num} additional Points in ${placeholder}! \n`);
     playerStats[placeholder] += 2
 }
@@ -94,7 +94,11 @@ function rest() {
 //! EVENT RANDOMIZER
 
 // TODO Make events into an array and randomize which element it should take out of the array. Helps with deleting Events easier
+let eventLibrary = [event01, event02, event03]
 
+function eventPicker() {
+    
+}
 // Creates Random Number Between 1-10 and loads the corresponding event to that number
 function eventGen() {
     const currentEventNumber = Math.ceil(Math.random())
