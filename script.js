@@ -140,8 +140,7 @@ async function maingame() {
     
     if (eventContinue === true && gameOverSwitch === false) {
 
-        rest()
-
+        await rest()
         eventGen()
         
     }
@@ -170,37 +169,40 @@ function restHeal() {
 
 //! REST FUNCTION
 
-function rest() {
+async function rest() {
 
-    do {
+    let rest = await inquirer.prompt({
+        name: "choice",
+        type: "list",
+        message: "Select Action:",
+        choices: [
+            "Character Stats",
+            "Inventory",
+            "Rest to Heal",
+            "Continue Journey"
+        ]})
 
-        console.log("You are resting. \n");
-        console.log("[c]Character Stats");
-        console.log("[i]Inventory");
-        console.log("[r]Rest to heal");
-        console.log("[w]Continue Journey \n \n");
+    switch(rest.choice) {
 
-        restChoice = prompt("What do you want to do?       PICK A CHOICE:");
-        console.log(restChoice);
-        if (restChoice === "c") {
-            console.clear();
-            playerStatsShow();
-        } else if (restChoice === "i") {
-            console.clear();           // TODO UNDER CONSTRUCTION
-        } else if (restChoice === "r") {
-            console.clear();
-            restHeal();
-        } else if (restChoice === "w") {
-            restContinue = true;
-            console.clear();
-            console.log("\n You get up and continue your Journey... \n");
-        } else {
-            console.clear();
-            invaidChoice();
-        }
+        case "Character Stats":
+            console.clear()
+            playerStatsShow()
+            break
 
-    } while (restContinue === false); 
+        case "Inventory":
+            console.clear()
+            break
 
+        case "Rest to Heal":
+            console.clear()
+            restHeal()
+            break
+
+        case "Continue Journey":
+            console.clear()
+            break
+    }
+    rest()    //! <========= Needs fixing
 }
 
 //! EVENT RANDOMIZER
@@ -272,7 +274,6 @@ async function gameShell(){
         case "QUIT GAME":
             break
     }
-
 
 }
 
