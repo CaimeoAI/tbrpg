@@ -139,59 +139,82 @@ const startGame = prompt("Do you want to start the game? [y]/[n] ")
 
 if(startGame === "y") {
 
+    tutorial()
+
     //TODO Start of the Tutorial
+    async function tutorial() {
 
-    console.clear();
-    console.log("\n You wake up in a dark prison cell with your right foot chained to the wall.");
-    console.log("\n As you tried to break the chains that are binding you to these cold stone walls, you notice a saw right next to you.");
-    console.log("\n You take saw into your hands. But what do you want to with it now? \n \n");
+        console.clear();
+        console.log("\n You wake up in a dark prison cell with your right foot chained to the wall.");
+        console.log("\n As you tried to break the chains that are binding you to these cold stone walls, you notice a saw right next to you.");
+        console.log("\n You take saw into your hands. But what do you want to with it now? \n \n");
 
-    do {
+        do {
+
+            let tutorialEvent01 = await inquirer.prompt({
+                name: "choice",
+                type: "list",
+                message: "Select Action:",
+                choices: [
+                    "Saw left foot off",
+                    "Saw right foot off",
+                    "Saw chain off",
+                    "Throw Saw away"
+                ]});
+
+            
+            switch (tutorialEvent01.choice) {
+                case "Saw left foot off":
+
+                    console.clear()
+                    console.log("\n After you saw your left foot off, you are still chained to the wall. Before you can think of anything else you die of blood loss...");
+                    gameOver()
+                    return
+
+                case "Saw right foot off":
+
+                    console.clear()
+                    console.log("\n You managed to saw your right foot off and you are no longer chained to the wall. However before you muster the strength to stand up on you remaining foot, you die of blood loss...")
+                    gameOver()
+                    return
+                
+                case "Saw chain off":
+
+                    console.clear()
+                    console.log("\n After more than what felt like an eternity, you finally managed to saw through the thick chains. You stand up and walk up to the only door there is.");
+                    statIncrease(2,2)
+                    eventContinue = true;
+                    break
+
+                case "Throw Saw away":
+
+                    console.clear()
+                    console.log("\n You throw the saw away. But after a while you pick it up again as you see no other tool that could help you in your current situation. \n");
+                    break
+            }
+
+        } while (eventContinue === false && gameOverSwitch === false)
+
         
-        let tutorialEvent01 = prompt("[a] Saw your left foot off [b] Saw your right foot off [c] Saw the the chain off [d] Throw the saw away       PICK A CHOICE: ");
 
-        if (tutorialEvent01 === "a") {
-            console.clear()
-            console.log("\n After you saw your left foot off, you are still chained to the wall. Before you can think of anything else you die of blood loss...");
-            gameOver()
-            break
-        } else if (tutorialEvent01 === "b") {
-            console.clear()
-            console.log("\n You managed to saw your right foot off and you are no longer chained to the wall. However before you muster the strength to stand up on you remaining foot, you die of blood loss...")
-            gameOver()
-            break
-        } else if (tutorialEvent01 === "c") {
-            console.clear()
-            console.log("\n After more than what felt like an eternity, you finally managed to saw through the thick chains. You stand up and walk up to the only door there is.");
-            statIncrease(2,2)
-            eventContinue = true;
-        } else if (tutorialEvent01 === "d") {
-            console.clear()
-            console.log("\n You throw the saw away. But after a while you pick it up again as you see no other tool that could help you in your current situation. \n");
-        } else {
-            invaidChoice()
+        if (eventContinue === true) {
+
+        console.log("\n You slowly open the door and walk through it and find yourself outside in the middle of a forest.");
+        console.log("\n You take a long rest after spending so much energy on freeing yourself from the chains.");
+        console.log("\n ...\n \n");
+
         }
-
-    } while (eventContinue === false && gameOverSwitch === false)
-
-    if (eventContinue === true) {
-
-    console.log("\n You slowly open the door and walk through it and find yourself outside in the middle of a forest.");
-    console.log("\n You take a long rest after spending so much energy on freeing yourself from the chains.");
-    console.log("\n ...\n \n");
-
-    }
-    
-    //TODO End of the Tutorial
-    
-    if (eventContinue === true && gameOverSwitch === false) {
-
-        rest()
-  
-        eventGen()
         
-    }
+        //TODO End of the Tutorial
+        
+        if (eventContinue === true && gameOverSwitch === false) {
 
+            rest()
+    
+            eventGen()
+            
+        }
+    }
 } else {
     console.clear()
 }
