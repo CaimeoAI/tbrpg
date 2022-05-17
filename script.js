@@ -1,7 +1,9 @@
 
 //! VARIABLES
 
+const inquirer = require("inquirer")
 const prompt = require("prompt-sync")({sigint:false});
+
 let eventContinue = false;
 let playerGold = 0;
 
@@ -94,11 +96,11 @@ function rest() {
 //! EVENT RANDOMIZER
 
 // TODO Make events into an array and randomize which element it should take out of the array. Helps with deleting Events easier
-let eventLibrary = [event01, event02, event03]
+// let eventLibrary = [event01, event02, event03]
 
-function eventPicker() {
+// function eventPicker() {}
     
-}
+
 // Creates Random Number Between 1-10 and loads the corresponding event to that number
 function eventGen() {
     const currentEventNumber = Math.ceil(Math.random())
@@ -145,7 +147,7 @@ if(startGame === "y") {
     console.log("\n You take saw into your hands. But what do you want to with it now? \n \n");
 
     do {
-
+        
         let tutorialEvent01 = prompt("[a] Saw your left foot off [b] Saw your right foot off [c] Saw the the chain off [d] Throw the saw away       PICK A CHOICE: ");
 
         if (tutorialEvent01 === "a") {
