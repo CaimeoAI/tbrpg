@@ -9,9 +9,7 @@ let playerGold = 0;
 
 let maxHealth = 10;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
-let restChoice;
 let restContinue = false;
-let event01Done = false;
 let gameOverSwitch = false;
 
 //! PLAYER STATS OBJECT DECLARATION and PLAYER STAT FUNCTIONS
@@ -97,6 +95,7 @@ function restHeal() {
 
 async function rest() {
     do {
+    console.log(`\n Current Gold: ${playerGold} \n`);
     let rest = await inquirer.prompt({
         name: "choice",
         type: "list",
@@ -139,6 +138,7 @@ async function rest() {
 // EVENT 01 THE OVERGROWN CHEST
 const event01 = async function() {
     console.log("\n Right ahead of you, you see a very overgrown chest. As you draw closer to the chest, you feel the urge to find out what's inside of it.");
+
 }
 
 // EVENT 02 THE WOODEN SHACK
