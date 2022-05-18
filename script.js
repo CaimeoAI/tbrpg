@@ -70,6 +70,156 @@ async function options() {
     }
 }
 
+
+//! GAME OVER FUNCTION
+
+function gameOver() {
+    console.log("\n \n GAME OVER \n \n");
+    gameOver = true;
+}
+
+//! RANDOM PICKER FUNCTION
+
+function randomPicker(x) {
+    const pick = x[Math.floor(Math.random()*x.length)]
+    return pick
+}
+
+//! REST HEAL FUNCTION
+
+function restHeal() {
+    playerStats.Health = maxHealth;
+    console.log("You take a rest... \n \n");
+    console.log(`You are completey healed back up to ${maxHealth}! \n \n`); 
+}
+
+//! REST FUNCTION
+
+async function rest() {
+    do {
+    let rest = await inquirer.prompt({
+        name: "choice",
+        type: "list",
+        message: "Select Action:",
+        choices: [
+            "Character Stats",
+            "Inventory",
+            "Rest to Heal",
+            "Continue Journey"
+        ]})
+
+    switch(rest.choice) {
+
+        case "Character Stats":
+            console.clear()
+            playerStatsShow()
+            break
+
+        case "Inventory":
+            console.clear()
+            break
+
+        case "Rest to Heal":
+            console.clear()
+            restHeal()
+            break
+
+        case "Continue Journey":
+            console.clear()
+            restContinue = true
+            break
+    }
+    }while(restContinue === false)
+    
+    restContinue = false
+}
+
+//! EVENT LIBRARY
+
+// EVENT 01 THE OVERGROWN CHEST
+const event01 = async function() {
+    console.log("\n Right ahead of you, you see a very overgrown chest. As you draw closer to the chest, you feel the urge to find out what's inside of it.");
+}
+
+// EVENT 02 THE WOODEN SHACK
+const event02 = async function() {
+    console.log("\n You find a wooden shack in the woods. You notice that birds stopped singing and even the Insects don't seem to make any noises right now.");
+}
+
+// EVENT 03 THE MERCHANT 
+const event03 = async function() {
+    console.log("\n As you find your way through these woods, you encounter an old man carrying several backpacks.")
+    console.log("\n 'Come closer!' he says.")
+    console.log("\n 'Take a look at what I can offer you!");
+}
+    
+let eventLibrary = [event01, event02, event03]
+
+// Creates Random Number Between 1-10 and loads the corresponding event to that number
+function eventGen() {
+    const currentEventNumber = Math.ceil(Math.random())
+
+    if(currentEventNumber === 1 && event01Done === false && gameOverSwitch === false) {
+
+        
+
+        do {
+
+            console.log("\n The left side road looks completely overgrown. The one straight ahead is plastered with red stone bricks. And the one to the right seems to lead deeper into the woods. \n \n");
+            
+            let event01 = prompt("[a] Take left road [b] Take road ahead [c] Take right road [d] Turn back      PICK A CHOICE:")
+
+            if (event01 === "a") {
+                break
+            } else if (event01 === "b") {
+                event01Done = true;
+            } else if (event01 === "c") {
+                break
+            } else if (event01 === "d") {
+                break
+            } else {
+                invaidChoice()
+            }
+
+        } while (event01Done === false)
+        
+    }
+}
+
+//! MAINFRAME
+
+async function gameShell(){
+
+    console.log("\n WELCOME TO THE TEXT-BASED RPG! \n");
+    let startGame = await inquirer.prompt({
+        name: "choice",
+        type: "list",
+        message: "[MAINMENU]\n",
+        choices: [
+            "START GAME",
+            "OPTIONS",
+            "QUIT GAME"
+        ]})
+
+    switch(startGame.choice) {
+
+        case "START GAME":
+            maingame()
+            break
+
+        case "OPTIONS":
+            console.clear()
+            await options()
+            console.clear()
+            gameShell()
+            return
+
+        case "QUIT GAME":
+            break
+    }
+
+}
+
 //! MAIN GAME FUNCTION
 
 async function maingame() {
@@ -141,145 +291,9 @@ async function maingame() {
     if (eventContinue === true && gameOverSwitch === false) {
 
         await rest()
-        eventGen()
+        randomPicker(eventLibrary)
         
     }
-}
-
-//! GAME OVER FUNCTION
-
-function gameOver() {
-    console.log("\n \n GAME OVER \n \n");
-    gameOver = true;
-}
-
-//! INVALID CHOICE FUNCTION
-
-function invaidChoice() {
-    console.log("\n Invalid Choice. Try using the letters corresponding to the given choices!");
-}
-
-//! REST HEAL FUNCTION
-
-function restHeal() {
-    playerStats.Health = maxHealth;
-    console.log("You take a rest... \n \n");
-    console.log(`You are completey healed back up to ${maxHealth}! \n \n`); 
-}
-
-//! REST FUNCTION
-
-async function rest() {
-    do {
-    let rest = await inquirer.prompt({
-        name: "choice",
-        type: "list",
-        message: "Select Action:",
-        choices: [
-            "Character Stats",
-            "Inventory",
-            "Rest to Heal",
-            "Continue Journey"
-        ]})
-
-    switch(rest.choice) {
-
-        case "Character Stats":
-            console.clear()
-            playerStatsShow()
-            break
-
-        case "Inventory":
-            console.clear()
-            break
-
-        case "Rest to Heal":
-            console.clear()
-            restHeal()
-            break
-
-        case "Continue Journey":
-            console.clear()
-            restContinue = true
-            break
-    }
-    }while(restContinue === false)
-    
-    restContinue = false
-}
-
-//! EVENT RANDOMIZER
-
-// TODO Make events into an array and randomize which element it should take out of the array. Helps with deleting Events easier
-let eventLibrary = [1, 2, 3]
-
-
-
-console.log(randomPicker(eventLibrary));
-    
-
-// Creates Random Number Between 1-10 and loads the corresponding event to that number
-function eventGen() {
-    const currentEventNumber = Math.ceil(Math.random())
-
-    if(currentEventNumber === 1 && event01Done === false && gameOverSwitch === false) {
-
-        console.log("\n You encounter a crossroad. There are three ways to ahead of you.");
-
-        do {
-
-            console.log("\n The left side road looks completely overgrown. The one straight ahead is plastered with red stone bricks. And the one to the right seems to lead deeper into the woods. \n \n");
-            
-            let event01 = prompt("[a] Take left road [b] Take road ahead [c] Take right road [d] Turn back      PICK A CHOICE:")
-
-            if (event01 === "a") {
-                break
-            } else if (event01 === "b") {
-                event01Done = true;
-            } else if (event01 === "c") {
-                break
-            } else if (event01 === "d") {
-                break
-            } else {
-                invaidChoice()
-            }
-
-        } while (event01Done === false)
-        
-    }
-}
-
-//! MAINLOOP
-async function gameShell(){
-
-    console.log("\n WELCOME TO THE TEXT-BASED RPG! \n");
-    let startGame = await inquirer.prompt({
-        name: "choice",
-        type: "list",
-        message: "[Select]",
-        choices: [
-            "START GAME",
-            "OPTIONS",
-            "QUIT GAME"
-        ]})
-
-    switch(startGame.choice) {
-
-        case "START GAME":
-            maingame()
-            break
-
-        case "OPTIONS":
-            console.clear()
-            await options()
-            console.clear()
-            gameShell()
-            return
-
-        case "QUIT GAME":
-            break
-    }
-
 }
 
 gameShell()
