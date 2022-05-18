@@ -43,7 +43,7 @@ async function options() {
     let options = await inquirer.prompt({
         name: "choice",
         type: "list",
-        message: "[Select]",
+        message: "[OPTIONS]\n",
         choices: [
             "DISPLAY",
             "GRAPHICS",
@@ -155,37 +155,6 @@ const event03 = async function() {
     
 let eventLibrary = [event01, event02, event03]
 
-// Creates Random Number Between 1-10 and loads the corresponding event to that number
-function eventGen() {
-    const currentEventNumber = Math.ceil(Math.random())
-
-    if(currentEventNumber === 1 && event01Done === false && gameOverSwitch === false) {
-
-        
-
-        do {
-
-            console.log("\n The left side road looks completely overgrown. The one straight ahead is plastered with red stone bricks. And the one to the right seems to lead deeper into the woods. \n \n");
-            
-            let event01 = prompt("[a] Take left road [b] Take road ahead [c] Take right road [d] Turn back      PICK A CHOICE:")
-
-            if (event01 === "a") {
-                break
-            } else if (event01 === "b") {
-                event01Done = true;
-            } else if (event01 === "c") {
-                break
-            } else if (event01 === "d") {
-                break
-            } else {
-                invaidChoice()
-            }
-
-        } while (event01Done === false)
-        
-    }
-}
-
 //! MAINFRAME
 
 async function gameShell(){
@@ -291,7 +260,8 @@ async function maingame() {
     if (eventContinue === true && gameOverSwitch === false) {
 
         await rest()
-        randomPicker(eventLibrary)
+        let pickedEvent = randomPicker(eventLibrary)
+        pickedEvent()
         
     }
 }
