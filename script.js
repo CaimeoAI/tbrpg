@@ -170,7 +170,7 @@ function restHeal() {
 //! REST FUNCTION
 
 async function rest() {
-
+    do {
     let rest = await inquirer.prompt({
         name: "choice",
         type: "list",
@@ -200,17 +200,22 @@ async function rest() {
 
         case "Continue Journey":
             console.clear()
+            restContinue = true
             break
     }
-    rest()    //! <========= Needs fixing
+    }while(restContinue === false)
+    
+    restContinue = false
 }
 
 //! EVENT RANDOMIZER
 
 // TODO Make events into an array and randomize which element it should take out of the array. Helps with deleting Events easier
-// let eventLibrary = [event01, event02, event03]
+let eventLibrary = [1, 2, 3]
 
-// function eventPicker() {}
+
+
+console.log(randomPicker(eventLibrary));
     
 
 // Creates Random Number Between 1-10 and loads the corresponding event to that number
